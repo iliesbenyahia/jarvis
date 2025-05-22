@@ -12,4 +12,16 @@
   services.k3s.enable = true;
   services.k3s.role = "server";
   services.k3s.configPath = static/k3s/config.yaml;
+
+  systemd.tmpfiles.settings = {
+    "k3s-data" = {
+      "/data/k3s" = {
+        d = {
+          group = "root";
+          mode = "0755";
+          user = "root";
+        };
+      };
+    };
+  };
 }
